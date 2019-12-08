@@ -5,6 +5,7 @@ applications:
     instances: 1
     random-route: false
     path: target/springcloudgateway-0.0.1-SNAPSHOT.jar
-    buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    buildpack: java_buildpack_offline
     services:
       - service-registry
+      - cfgInstanceMaster
