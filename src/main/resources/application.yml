@@ -1,0 +1,30 @@
+spring:
+  application:
+     name: springcloudgateway
+  security:
+    user:
+      name: user
+      password: password
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: catalog-service-routes
+          uri: lb://catalog-service
+          predicates:
+            - Path=/catalog/**
+          filters:
+            - AddRequestHeader=Authorization, Basic user:password
+            - name: Hystrix
+              args:
+               name: failureRoot
+               fallbackUri: forward:/fallback
+  main:
+    allow-bean-definition-overriding: true
+logging.level:
+      root: DEBUG
+
+
+
