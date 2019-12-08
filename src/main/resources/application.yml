@@ -16,7 +16,6 @@ spring:
           predicates:
             - Path=/catalog/**
           filters:
-            - AddRequestHeader=Authorization, Basic user:password
             - name: Hystrix
               args:
                name: failureRoot
