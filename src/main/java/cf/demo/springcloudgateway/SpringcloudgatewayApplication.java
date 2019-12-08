@@ -10,17 +10,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SpringcloudgatewayApplication
 {
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(SpringcloudgatewayApplication.class, args);
+
 	}
-
-
-
-
-
-
-
 }
 
