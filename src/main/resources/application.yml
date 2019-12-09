@@ -17,7 +17,7 @@ spring:
                 name: failureRoot
                 fallbackUri: forward:/fallback
         - id: bgdemo-routes
-          uri: https://bgdemo.apps.pas-useast1.gcp-wipro.com
+          uri: https://bgdemo.apps.pas-useast1.test.com
           predicates:
             - Path=/home
   main:
