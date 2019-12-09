@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: springcloudgateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: catalog-service-routes
+          uri: lb://catalog-service
+          predicates:
+            - Path=/catalog/**
+          filters:
+            - name: Hystrix
+              args:
+                name: failureRoot
+                fallbackUri: forward:/fallback
+        - id: bgdemo-routes
+          uri: https://bgdemo.apps.pas-useast1.gcp-wipro.com
+          predicates:
+            - Path=/home
+  main:
+    allow-bean-definition-overriding: true
+logging.level:
+  root: DEBUG
+management.endpoints.web.exposure.include: '*'

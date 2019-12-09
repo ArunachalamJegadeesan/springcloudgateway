@@ -19,20 +19,11 @@ import reactor.core.publisher.Mono;
 @RestController
 public class ResourceNotFound {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    static final String FORWARDED_URL = "X-CF-Forwarded-Url";
 
     @GetMapping("/fallback")
     public String  serviceNotAvilable() {
-        return "Unable Route Request - Service Down / Service Not found";
+        return "Unable Route Request-Service Down/Service Not found";
     }
-
-
-
-
-
-
 
 }
 
