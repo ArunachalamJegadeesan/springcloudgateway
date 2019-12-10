@@ -1,12 +1,15 @@
 spring:
   application:
     name: springcloudgateway
+#enable this for service discovery
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
+
       routes:
+# discoveryclient routes
         - id: catalog-service-routes
           uri: lb://catalog-service
           predicates:
@@ -16,8 +19,21 @@ spring:
               args:
                 name: failureRoot
                 fallbackUri: forward:/fallback
+
+# canary release block for bgdemo application
+        - id: bgservice_v1
+          uri: http://localhost:8081/v1
+          predicates:
+              - Path=/s
+              - Weight=service1, 80
+
+        - id: bgservice1_v2
+          uri: http://localhost:8081/v2
+          predicates:
+             - Path=/s
+             - Weight=service1, 20
   main:
     allow-bean-definition-overriding: true
 logging.level:
   root: DEBUG
-management.endpoints.web.exposure.include: '*'
+

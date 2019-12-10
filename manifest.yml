@@ -8,4 +8,3 @@ applications:
     buildpack: java_buildpack_offline
     services:
       - service-registry
-      - cfgInstanceMaster
